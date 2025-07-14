@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百度一下，你就知道</title>
+    <style>
+        /* 整体页面样式 */
+        body {
+            font-family: "微软雅黑", sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 题头样式 */
+        h1 {
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+            background: linear-gradient(to right, #feac5e, #c779d0, #4bc0c8);
+            width: 100%;
+            margin: 0;
+        }
+
+        /* 导航按钮样式 */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px 0;
+            background-color: white;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        .nav-buttons button {
+            padding: 10px 20px;
+            background-color: #4bc0c8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-buttons button:hover {
+            background-color: #3aa0a8;
+            animation: bounce 0.5s ease;
+        }
+
+        /* 按钮跳动动画 */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* 图片容器通用样式 */
+        .img-container {
+            width: 80%;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* 图片样式 */
+        .img-container img {
+            width: 100%;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .img-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* 文字容器通用样式 */
+        .text-box {
+            padding: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* 2 - 6 张图片右侧文字布局（媒体查询适配不同设备，这里简单示意） */
+        @media (min-width: 768px) {
+            .img-row-2to6 {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .img-row-2to6 img {
+                width: 60%;
+            }
+
+            .img-row-2to6 .text-box {
+                width: 40%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 题头 -->
+    <h1>百度一下，你就知道</h1>
+
+    <!-- 导航按钮 -->
+    <div class="nav-buttons">
+        <button onclick="scrollToImage(1)">热搜top5</button>
+        <button onclick="scrollToImage(7)">热搜词云图</button>
+        <button onclick="scrollToImage(8)">热搜标题情感分析</button>
+        <button onclick="scrollToImage(9)">热搜对话情感识别</button>
+    </div>
+
+    <!-- 第1张图片及下方文字 -->
+    <div id="image-1" class="img-container">
+        <img src="top5_hot_search.png" alt="图片1">
+        <div class="text-box">
+            <p>  </p>
+        </div>
+    </div>
+
+    <!-- 第2张图片及右侧文字（2-6用特殊布局类） -->
+    <div id="image-2" class="img-container img-row-2to6">
+        <img src="1.png" alt="图片2">
+        <div class="text-box">
+            <h3 class="img-title">城市归根结底是人民的城市</h3>
+            <p>钢筋水泥的丛林间，</p>
+            <p>人民是跳动的火焰。</p>
+            <p>街道蜿蜒，似生活的线，</p>
+            <p>串起梦想，把希望点燃。</p>
+            <p>每一扇窗后，故事蔓延，</p>
+            <p>每一步路上，奋斗斑斓。</p>
+            <p>城市的脉搏，人民来牵，</p>
+            <p>归根结底，是温暖的家园。</p>
+        </div>
+    </div>
+
+    <!-- 第3张图片及右侧文字 -->
+    <div id="image-3" class="img-container img-row-2to6">
+        <img src="2.png" alt="图片3">
+        <div class="text-box">
+            <h3 class="img-title">这么热不报40℃？权威回应来了</h3>
+            <p>烈日高悬似火燃，</p>
+            <p>高温烘烤路生烟。</p>
+            <p>四十刻度因何隐，</p>
+            <p>权威开言解众难。</p>
+            <p>数据科学循准则，</p>
+            <p>民生关切系心间。</p>
+            <p>且听回应消疑虑，</p>
+            <p>热夏依规报万千。</p>
+        </div>
+    </div>
+
+    <!-- 第4张图片及右侧文字 -->
+    <div id="image-4" class="img-container img-row-2to6">
+        <img src="3.png" alt="图片4">
+        <div class="text-box">
+            <h3 class="img-title">新疆的小孩一出生就带全妆</h3>
+            <p>西域风来幻彩开，</p>
+            <p>天生丽质若仙裁。</p>
+            <p>眼眸藏韵如星落，</p>
+            <p>轮廓含情似月来。</p>
+            <p>本是天成无粉黛，</p>
+            <p>却疑仙袂带香腮。</p>
+            <p>新疆儿女神姿妙，</p>
+            <p>一笑惊鸿画卷开。</p>
+        </div>
+    </div>
+
+    <!-- 第5张图片及右侧文字 -->
+    <div id="image-5" class="img-container img-row-2to6">
+        <img src="4.png" alt="图片5">
+        <div class="text-box">
+            <h3 class="img-title">天气预报会“刻意”压低数值吗</h3>
+            <p>风云变幻意难猜，</p>
+            <p>预报求真仔细裁。</p>
+            <p>岂有私心压数值，</p>
+            <p>但凭公心报将来。</p>
+            <p>卫星遥感寻规律，</p>
+            <p>电脑精算解谜霾。</p>
+            <p>科学为基民为上，</p>
+            <p>阴晴早告暖心怀。</p>
+        </div>
+    </div>
+
+    <!-- 第6张图片及右侧文字 -->
+    <div id="image-6" class="img-container img-row-2to6">
+        <img src="5.png" alt="图片6">
+        <div class="text-box">
+            <h3 class="img-title">女孩街拍意外走红 神似张柏芝</h3>
+            <p>街头一笑韵如仙，</p>
+            <p>神似芝颜惹众怜。</p>
+            <p>秀发轻扬风里舞，</p>
+            <p>明眸流盼画中传。</p>
+            <p>偶然街拍成名瞬，</p>
+            <p>恰似繁星落世间。</p>
+            <p>美丽天成惊四座，</p>
+            <p>青春绽放意绵绵。</p>
+        </div>
+    </div>
+
+    <!-- 第7张图片及下方文字 -->
+    <div id="image-7" class="img-container">
+        <img src="title_wordcloud.png" alt="图片7">
+        <div class="text-box">
+            <p>高频词 “男孩”“被”“翻”“男子” 等，对应热搜里的社会新闻；“天气预报”“数值” 关联民生服务；“夺冠”“冠军” 呼应体育热点；“垃圾”“致癌” 是消费、健康负面话题 。词云直观呈现百度热搜的内容生态：覆盖社会事件、民生服务、体育娱乐、消费安全等，与情感/情绪数据呼应 —— 负面事件带高负面情感，“夺冠” 等是正面素材，“天气预报” 等为中性信息，共同构成热搜话题池。</p>
+        </div>
+    </div>
+
+    <!-- 第8张图片及下方文字 -->
+    <div id="image-8" class="img-container">
+        <img src="sentiment_pie_chart.png" alt="图片8">
+        <div class="text-box">
+            <p>热搜情感里 “负面” 占 52.9%，说明百度热搜易聚焦争议、突发问题；“正面” 41.2%，多是荣誉、利好；“中性” 5.9% 为客观事实。可见热搜情感偏负面驱动，负面事件更易引发传播，但正面内容也有一定声量，符合大众对 “热点” 中冲突、意外的关注偏好。~</p>
+        </div>
+    </div>
+
+    <!-- 第9张图片及下方文字 -->
+    <div id="image-9" class="img-container">
+        <img src="dialogue_emotion_pie_chart.png" alt="图片9">
+        <div class="text-box">
+            <p>百度热搜相关对话里，超八成（88.2%）是 “neutral（中性）” 表述，客观陈述事件进展；仅 11.8% 带 “pessimistic（消极）” 情绪，是关于负面事件的讨论，反映热搜对话以理性、客观传递信息为主，消极情绪占比低。</p>
+        </div>
+    </div>
+
+    <script>
+        // 平滑滚动到指定图片的函数
+        function scrollToImage(imageNumber) {
+            const element = document.getElementById(`image-${imageNumber}`);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
